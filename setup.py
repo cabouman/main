@@ -13,7 +13,7 @@ setup(name='catsim-xcist',
       author_email='Mingye.Wu@ge.com',
       license='BSD 3-Clause License',
       install_requires=['numpy', 'scipy', 'matplotlib'],
-      packages=['catsim', 'catsim.pyfiles', 'reconstruction'],
+      packages=['catsim', 'catsim.pyfiles', 'reconstruction', 'reconstruction.pyfiles'],
       zip_safe=False,
       package_data={
           'catsim':[r'lib/*.*', r'cfg/*.cfg', 
