@@ -56,7 +56,7 @@ long getMemorySize( )
 	mib[1] = HW_PHYSMEM64;		/* NetBSD, OpenBSD. --------- */
 #endif
 	int64_t size = 0;		/* 64-bit */
-	long len = sizeof( size );
+	size_t len = sizeof( size );
 	if ( sysctl( mib, 2, &size, &len, NULL, 0 ) == 0 )
 		return (long)size;
 	return 0L;			/* Failed? */

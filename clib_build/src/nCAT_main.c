@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <pthread.h>
+#include <ctype.h>
 #include "ct_nurbs.h"
 #define MATERIAL_INDEX_BASIS 0  //can be 1 or zero
 
@@ -106,7 +107,7 @@ static int use_tri_model = 0;
 static int max_num_models = 5000;
 
 
-#include <malloc.h>
+// #include <malloc.h>
 
 #define NR_END 1
 #define FREE_ARG char*
@@ -2882,7 +2883,7 @@ void SAVE_TO_FILE(float *array, int xdim, int ydim, int zdim, char *name)
 */
   strcpy(new_name, name);
   strcat(new_name, ".bin");   /* add extension to file name*/
-  unlink(new_name);          
+  remove(new_name);
 
   if(!flag)
     {  
@@ -2901,7 +2902,7 @@ void SAVE_TO_FILE(float *array, int xdim, int ydim, int zdim, char *name)
   if (n != TotalPix) {
     printf("Error : fwrite return %d\n",n);
     Abort ("Failure writing pixels to output image\n");
-    unlink (new_name);
+    remove (new_name);
   }
   fclose(fp_out);
 }
