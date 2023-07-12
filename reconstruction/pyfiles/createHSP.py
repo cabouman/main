@@ -54,10 +54,15 @@ def createHSP(Length, kernelType):
         # y = np.array([1, 1.0485, 1.17, 1.2202, 0.9201])
         y = np.array([1, 0.9338, 0.7441, 0.4425, 0.0531])
         f = interp1d(x, y, kind='quadratic')
-        FFT_F = np.zeros(nn2)
-        for i in range(nn):
-            FFT_F[i] = f((i) / nn) * 0.997 * (i + 0.003) / nn2
-            FFT_F[nn2 - i - 1] = f((i) / nn) * 0.997 * (i + 1 + 0.003) / nn2
+        i_values = np.arange(nn)
+        f_values = f(i_values / nn)
+        FFT_F_low = f_values * 0.997 * (i_values + 0.003) / nn2
+        FFT_F_high = f_values * 0.997 * (i_values + 1 + 0.003) / nn2
+        FFT_F = np.concatenate((FFT_F_low, np.flip(FFT_F_high)))
+        # FFT_F = np.zeros(nn2)
+        # for i in range(nn):
+        #     FFT_F[i] = f((i) / nn) * 0.997 * (i + 0.003) / nn2
+        #     FFT_F[nn2 - i - 1] = f((i) / nn) * 0.997 * (i + 1 + 0.003) / nn2
         FFT_F = FFT_F * complex(0, 1)
 
     elif kernelType == "bone":
